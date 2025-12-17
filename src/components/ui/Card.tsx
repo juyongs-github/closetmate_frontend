@@ -5,14 +5,12 @@ interface Props {
 
 function Card({ src, title }: Props) {
   return (
-    <div className="w-[20rem] h-[25rem] bg-white rounded-3xl flex flex-col items-center justify-center text-5xl shadow-xl mt-10 mr-10">
-      <img
-        className="w-[20rem] h-[20rem] flex-shrink-0"
-        src={src}
-        alt={title}
-      />
-      <div className="flex items-center h-full">
-        <span className="text-base font-bold">{title}</span>
+    <div className="min-w-[7rem] max-w-[20rem] aspect-[4/5] bg-white rounded-3xl flex flex-col items-center shadow-xl">
+      <img src={src} alt={title} />
+      <div className="flex items-center justify-center flex-1">
+        <span className="text-[clamp(0.75rem,1.5vw,1.25rem)] font-bold">
+          {title}
+        </span>
       </div>
     </div>
   );

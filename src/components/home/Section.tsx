@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,16 +9,19 @@ interface Props {
 }
 
 function Section({ title, children, link }: Props) {
+  const mobile = useMediaQuery("(max-width:640px)");
+  const tablet = useMediaQuery("(max-width:768px)");
+
   return (
-    <section className="flex flex-col justify-center m-20 bg-orange-100 shadow-xl p-14 rounded-2xl">
+    <section className="flex flex-col justify-center m-10 bg-orange-100 shadow-xl sm:mx-20 p-7 sm:p-10 rounded-2xl">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold tracking-tight text-gray-900 text-balance sm:text-2xl">
+        <h1 className="text-lg font-bold tracking-tight text-gray-900 text-balance sm:text-xl md:text-2xl">
           {title}
         </h1>
         {link && (
           <Button
             variant="contained"
-            size="large"
+            size={mobile || tablet ? "small" : "large"}
             component={Link}
             to="/login"
             endIcon="→"
@@ -27,7 +30,7 @@ function Section({ title, children, link }: Props) {
           </Button>
         )}
       </div>
-      <div className="flex flex-wrap mt-7">{children}</div>
+      <div className="mt-7">{children}</div>
     </section>
   );
 }
