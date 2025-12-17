@@ -13,7 +13,7 @@ function Section({ title, children, link }: Props) {
   const tablet = useMediaQuery("(max-width:768px)");
 
   return (
-    <section className="flex flex-col justify-center m-10 bg-orange-100 shadow-xl sm:mx-20 p-7 sm:p-10 rounded-2xl">
+    <section className="flex flex-col justify-center m-10 bg-orange-100 shadow-xl md:mx-20 p-7 sm:p-10 md:p-14 rounded-2xl gap-7 sm:gap-10 md:gap-14">
       <div className="flex items-center justify-between">
         <h1 className="text-lg font-bold tracking-tight text-gray-900 text-balance sm:text-xl md:text-2xl">
           {title}
@@ -30,7 +30,7 @@ function Section({ title, children, link }: Props) {
           </Button>
         )}
       </div>
-      <div className="mt-7">{children}</div>
+      {children}
     </section>
   );
 }

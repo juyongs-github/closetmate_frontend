@@ -51,8 +51,8 @@ function UserHome() {
 
   return (
     <div className="pt-20">
-      <div className="sm:flex sm:justify-between">
-        <section className="flex flex-col justify-center gap-5 m-10 shadow-xl p-7 sm:mt-20 sm:ml-20 sm:mr-5 sm:mb-0 sm:p-10 sm:gap-7 md:p-14 md:gap-10 sm:flex-[3] rounded-2xl bg-cyan-200">
+      <div className="md:flex md:justify-between">
+        <section className="flex flex-col justify-center gap-5 m-10 shadow-xl p-7 md:mt-20 md:ml-20 md:mr-5 md:mb-0 sm:p-10 sm:gap-7 md:p-14 md:gap-10 sm:flex-[1] rounded-2xl bg-cyan-200">
           <h1 className="text-lg font-semibold tracking-tight text-gray-900 text-balance sm:text-xl md:text-2xl">
             안녕하세요, 홍길동님!
           </h1>
@@ -73,7 +73,7 @@ function UserHome() {
             </Button>
           </div>
         </section>
-        <section className="flex flex-col justify-center gap-5 m-10 bg-yellow-200 shadow-xl p-7 sm:mt-20 sm:ml-5 sm:mr-20 sm:mb-0 sm:p-10 sm:gap-7 md:p-14 md:gap-10 sm:flex-[2.5] rounded-2xl">
+        <section className="flex flex-col justify-center gap-5 m-10 bg-yellow-200 shadow-xl p-7 md:mt-20 md:ml-5 md:mr-20 md:mb-0 sm:p-10 sm:gap-7 md:p-14 md:gap-10 sm:flex-[1] rounded-2xl">
           <h1 className="text-lg font-semibold tracking-tight text-gray-900 text-balance sm:text-xl md:text-2xl">
             오늘 날씨
           </h1>
@@ -97,7 +97,7 @@ function UserHome() {
       </div>
       <Section title="내 옷장" link="/closet">
         {myClosetItems.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 sm:gap-7 md:gap-10">
             {myClosetItems.map((item) => (
               <Card src={item_sample} title={item.title} />
             ))}
@@ -110,7 +110,7 @@ function UserHome() {
       </Section>
       <Section title="최근 코디" link="/latest">
         {codiHistorys.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 md:gap-10 sm:grid-cols-3 md:grid-cols-4 sm:gap-7">
             {codiHistorys.map((item) => (
               <Card src={item_sample} title={item.title} />
             ))}
@@ -123,7 +123,7 @@ function UserHome() {
       </Section>
       <Section title="저장 코디" link="/favorite">
         {myFavoriteCodis.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 sm:gap-7 md:gap-10">
             {myFavoriteCodis.map((item) => (
               <Card src={item_sample} title={item.title} />
             ))}
