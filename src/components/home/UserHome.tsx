@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import weather_sample from "../../assets/home/weather_sample.png";
 import item_sample from "../../assets/home/item_sample.png";
-import { Button, useMediaQuery } from "@mui/material";
+import { Button } from "@mui/material";
 import Section from "./Section";
 import Card from "../ui/Card";
+import { useResponsive } from "../../hooks/useResponsive";
 
 interface Weather {
   temperature: number;
@@ -26,8 +27,7 @@ interface MyFavoriteCodis {
 }
 
 function UserHome() {
-  const mobile = useMediaQuery("(max-width:640px)");
-  const tablet = useMediaQuery("(max-width:768px)");
+  const { mobile, tablet } = useResponsive();
 
   const weather: Weather = {
     temperature: -10,

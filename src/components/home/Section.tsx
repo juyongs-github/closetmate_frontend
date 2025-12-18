@@ -1,6 +1,7 @@
-import { Button, useMediaQuery } from "@mui/material";
+import { Button } from "@mui/material";
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { useResponsive } from "../../hooks/useResponsive";
 
 interface Props {
   title: string;
@@ -9,8 +10,7 @@ interface Props {
 }
 
 function Section({ title, children, link }: Props) {
-  const mobile = useMediaQuery("(max-width:640px)");
-  const tablet = useMediaQuery("(max-width:768px)");
+  const { mobile, tablet } = useResponsive();
 
   return (
     <section className="flex flex-col justify-center m-10 bg-orange-100 shadow-xl md:mx-20 p-7 sm:p-10 md:p-14 rounded-2xl gap-7 sm:gap-10 md:gap-14">
