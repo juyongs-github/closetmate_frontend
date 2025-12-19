@@ -4,17 +4,19 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import FindAccount from "./pages/FindAccount";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <Router>
       <div className="flex justify-center min-w-[360px]">
-        <div className="w-full min-w-[360px] transform origin-top-left scale-100">
+        <div className="w-full max-w-[1200px] min-w-[360px] transform origin-top-left scale-100">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/find-account" element={<FindAccount />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </div>
