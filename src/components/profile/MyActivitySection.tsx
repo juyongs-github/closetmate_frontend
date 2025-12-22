@@ -9,26 +9,26 @@ function MyActivitySection() {
       <div className="flex items-center justify-center gap-2 md:gap-3">
         <FiActivity
           style={{
-            width: mobile || tablet ? "2rem" : "2.5rem",
-            height: mobile || tablet ? "2rem" : "2.5rem",
+            width: mobile || tablet ? "1.5rem" : "2rem",
+            height: mobile || tablet ? "1.5rem" : "2rem",
           }}
         />
-        <h2 className="text-xl font-bold tracking-tight md:text-2xl">
+        <h2 className="text-lg font-bold tracking-tight md:text-xl">
           나의 활동
         </h2>
       </div>
-      <div className="grid items-center min-w-0 grid-cols-2 gap-x-20 gap-y-7 md:gap-y-10 text-nowrap">
-        <p className="text-lg font-bold md:text-xl">옷장 아이템</p>
-        <p className="min-w-0 text-lg tracking-wide text-right truncate md:text-xl">
-          10<span className="ml-1">개</span>
+      <div className="grid items-center min-w-0 grid-cols-2 text-sm gap-y-7 md:gap-y-10 text-nowrap md:text-base">
+        <p className="font-bold">옷장 아이템</p>
+        <p className="min-w-0 tracking-wide text-right truncate">
+          1,000<span className="ml-1 font-semibold">개</span>
         </p>
-        <p className="text-lg font-bold md:text-xl">AI 추천</p>
-        <p className="min-w-0 text-lg tracking-wide text-right truncate md:text-xl">
-          30<span className="ml-1">회</span>
+        <p className="font-bold">AI 추천</p>
+        <p className="min-w-0 tracking-wide text-right truncate">
+          3,000<span className="ml-1 font-semibold">회</span>
         </p>
-        <p className="text-lg font-bold md:text-xl">저장 코디</p>
-        <p className="min-w-0 text-lg tracking-wide text-right truncate md:text-xl">
-          20<span className="ml-1">개</span>
+        <p className="font-bold">저장 코디</p>
+        <p className="min-w-0 tracking-wide text-right truncate ">
+          2,000<span className="ml-1 font-semibold">개</span>
         </p>
       </div>
     </section>

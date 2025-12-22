@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <div className="flex justify-center min-w-[360px]">
-        <div className="w-full max-w-[1200px] min-w-[360px] transform origin-top-left scale-100">
+        <div className="w-full max-w-[960px] min-w-[360px] transform origin-top-left scale-100">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />

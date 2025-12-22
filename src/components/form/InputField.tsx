@@ -1,4 +1,9 @@
-import { TextField, type SxProps, type Theme } from "@mui/material";
+import {
+  InputAdornment,
+  TextField,
+  type SxProps,
+  type Theme,
+} from "@mui/material";
 import {
   Controller,
   type Control,
@@ -15,6 +20,9 @@ interface InputFieldProps<T extends FieldValues> {
   type: string;
   numberOnly: boolean;
   sx?: SxProps<Theme>;
+  size?: "small" | "medium";
+  endAdornment?: string;
+  multiline?: boolean;
 }
 
 function InputField<T extends FieldValues>({
@@ -25,6 +33,9 @@ function InputField<T extends FieldValues>({
   type,
   numberOnly,
   sx,
+  size,
+  endAdornment,
+  multiline,
 }: InputFieldProps<T>) {
   return (
     <Controller
@@ -48,6 +59,19 @@ function InputField<T extends FieldValues>({
             }
             field.onChange(value);
           }}
+          size={size}
+          slotProps={{
+            input: {
+              endAdornment: endAdornment && (
+                <InputAdornment position="end">{endAdornment}</InputAdornment>
+              ),
+            },
+            htmlInput: {
+              maxLength: 50,
+            },
+          }}
+          multiline={multiline}
+          maxRows={multiline ? 2 : 1}
         />
       )}
     />
