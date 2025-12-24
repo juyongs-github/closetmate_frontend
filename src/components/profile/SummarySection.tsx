@@ -1,22 +1,18 @@
-import { Box, Button, IconButton } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
+import { Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import profile from "../../assets/header/profile.png";
-import CloseIcon from "@mui/icons-material/Close";
 import InputField from "../form/InputField";
 import type { ProfileSectionProps } from "../../types/profile";
-import { useState } from "react";
+import AvatarField from "../form/AvatarField";
 
 interface SummarySectionProps extends ProfileSectionProps {
   onEdit: () => void;
 }
 
 function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
-  const [uploadImg, setUploadImg] = useState<string | null>(null);
-
   return (
-    <section className="flex p-10 bg-white md:p-12 rounded-2xl">
+    <section className="flex p-10 bg-white shadow-md md:p-12 rounded-2xl">
       <div className="flex flex-col items-center justify-between w-full gap-8">
         <div className="flex items-center gap-2 md:gap-3">
           <img src={profile} alt="profile" className="w-[2rem] md:w-[3rem]" />
@@ -25,85 +21,10 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
           </h1>
         </div>
         <div className="flex flex-col items-center justify-between w-full md:flex-row gap-7">
-          <div className="flex flex-col items-center gap-3 md:flex-row md:gap-7">
-            <Box
-              sx={{
-                position: "relative",
-                width: "7rem",
-                height: "7rem",
-              }}
-            >
-              <Box
-                component="label"
-                sx={{
-                  display: "block",
-                  width: "100%",
-                  height: "100%",
-                  border: "1px solid",
-                  borderColor: "grey.300",
-                  borderRadius: 100,
-                  overflow: "hidden",
-                  cursor: isEdit ? "pointer" : "default",
-                }}
-              >
-                {uploadImg ? (
-                  <img
-                    src={uploadImg}
-                    alt="profile"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                ) : (
-                  <PersonIcon
-                    sx={{
-                      width: "100%",
-                      height: "100%",
-                      p: 2,
-                      backgroundColor: "grey.300",
-                    }}
-                  />
-                )}
-
-                {isEdit && (
-                  <input
-                    type="file"
-                    hidden
-                    accept="image/*"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (!file) return;
-                      setUploadImg(URL.createObjectURL(file));
-                    }}
-                  />
-                )}
-              </Box>
-
-              {/* 삭제 버튼 */}
-              {uploadImg && isEdit && (
-                <IconButton
-                  size="small"
-                  sx={{
-                    position: "absolute",
-                    top: 4,
-                    right: 4,
-                    zIndex: 20,
-                    backgroundColor: "rgba(0,0,0,0.7)",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "rgba(0,0,0,0.9)",
-                    },
-                  }}
-                  onClick={() => setUploadImg(null)}
-                >
-                  <CloseIcon fontSize="small" />
-                </IconButton>
-              )}
-            </Box>
+          <div className="flex flex-col items-center gap-5 md:flex-row md:gap-7">
+            <AvatarField isEdit={isEdit} control={control} />
             {isEdit ? (
-              <div className="flex flex-col items-center gap-1.5 md:items-start">
+              <div className="flex flex-col items-center gap-3 md:items-start">
                 <div className="flex flex-col items-center gap-1 md:items-start">
                   <InputField
                     name="name"
@@ -115,7 +36,7 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
                     type="text"
                     numberOnly={false}
                     sx={{
-                      width: "70%",
+                      width: "100%",
                     }}
                     size="small"
                   />
@@ -133,7 +54,10 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
                   type="text"
                   numberOnly={false}
                   sx={{
-                    width: "100%",
+                    width: "15rem",
+                    // "& .MuiInputBase-input": {
+                    //   fontSize: "0.925rem",
+                    // },
                   }}
                   size="small"
                   multiline={true}

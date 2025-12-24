@@ -1,7 +1,6 @@
 import type { SxProps, Theme } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { useState } from "react";
 import {
   Controller,
   type Control,
@@ -9,7 +8,7 @@ import {
   type Path,
 } from "react-hook-form";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import "dayjs/locale/ko";
 
 interface BirthdayFieldProps<T extends FieldValues> {
@@ -23,7 +22,6 @@ function BirthdayField<T extends FieldValues>({
   control,
   sx,
 }: BirthdayFieldProps<T>) {
-  const [value, setValue] = useState<Dayjs | null>(dayjs());
   return (
     <Controller
       name={name}
@@ -37,10 +35,12 @@ function BirthdayField<T extends FieldValues>({
             {...field}
             label="생년월일"
             maxDate={dayjs()}
-            value={value}
+            value={dayjs(field.value, "YYYYMMDD")}
             onChange={(newValue) => {
-              setValue(newValue);
-              field.onChange(newValue);
+              if (newValue) {
+                const formatDate = newValue.format("YYYYMMDD");
+                field.onChange(formatDate);
+              }
             }}
             slotProps={{
               textField: {

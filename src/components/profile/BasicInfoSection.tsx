@@ -1,23 +1,21 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import BirthdayField from "../form/BirthdayField";
-import type { ProfileSectionProps } from "../../types/profile";
+import { type ProfileSectionProps } from "../../types/profile";
 import SelectField from "../form/SelectField";
 import InputField from "../form/InputField";
+import { FIGURES, GENDERS } from "../../types/common";
+import { Button } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
+import ChangePasswordModal from "../modal/changePasswordModal";
 
 function BasicInfoSection({ isEdit, control }: ProfileSectionProps) {
-  const genders = [
-    {
-      label: "남",
-      value: "MEN",
-    },
-    {
-      label: "여",
-      value: "WOMEN",
-    },
-  ];
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
-    <section className="flex flex-col gap-12 p-10 bg-white md:gap-16 rounded-2xl">
+    <section className="flex flex-col gap-12 p-10 bg-white shadow-md md:gap-16 rounded-2xl">
       <div className="flex items-center justify-center gap-2 md:gap-3">
         <InfoOutlinedIcon
           sx={{
@@ -51,7 +49,7 @@ function BasicInfoSection({ isEdit, control }: ProfileSectionProps) {
             sx={{
               width: "100%",
             }}
-            options={genders}
+            options={[...GENDERS]}
           />
           <InputField
             name="phoneNumber"
@@ -105,8 +103,24 @@ function BasicInfoSection({ isEdit, control }: ProfileSectionProps) {
             sx={{
               width: "100%",
             }}
-            options={genders}
+            options={[...FIGURES]}
           />
+          <Button
+            variant="contained"
+            startIcon={<EditIcon />}
+            sx={{
+              height: {
+                xs: "2.5rem",
+                md: "3rem",
+              },
+              backgroundColor: "sky",
+              borderRadius: 50,
+            }}
+            onClick={handleOpen}
+          >
+            <span>비밀번호 변경</span>
+          </Button>
+          <ChangePasswordModal open={open} onClose={handleClose} />
         </div>
       ) : (
         <div className="grid items-center min-w-0 grid-cols-2 text-sm gap-y-7 md:gap-y-10 text-nowrap md:text-base">

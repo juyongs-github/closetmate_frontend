@@ -1,30 +1,37 @@
 import ColorLensOutlinedIcon from "@mui/icons-material/ColorLensOutlined";
-import { Box, Tooltip } from "@mui/material";
-import type { ProfileSectionProps } from "../../types/profile";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { Box, IconButton, Tooltip } from "@mui/material";
+import { type ProfileSectionProps } from "../../types/profile";
 import ColorPickerField from "../form/ColorPickerField";
+import { useFieldArray } from "react-hook-form";
 
-function PreferColorSection({ isEdit, control }: ProfileSectionProps) {
-  const colors: string[] = [
-    "#ffffff",
-    "#000000",
-    "#aaaaaa",
-    "#abcdef",
-    "#aaaaaa",
-    "#aaaaaa",
-  ];
+interface PreferColorSectionProps extends ProfileSectionProps {
+  colors: string[];
+}
+
+function PreferColorSection({
+  isEdit,
+  control,
+  colors,
+}: PreferColorSectionProps) {
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "color",
+  });
 
   return (
-    <section className="flex flex-col gap-10 p-10 bg-white md:gap-12 rounded-2xl">
+    <section className="flex flex-col gap-10 p-10 bg-white shadow-md md:gap-12 rounded-2xl">
       <div className="flex items-center justify-center gap-2 md:gap-3">
         <ColorLensOutlinedIcon
           sx={{
             width: {
-              xs: "2rem",
-              md: "2.5rem",
+              xs: "1.5rem",
+              md: "2rem",
             },
             height: {
-              xs: "2rem",
-              md: "2.5rem",
+              xs: "1.5rem",
+              md: "2rem",
             },
           }}
         />
@@ -33,19 +40,70 @@ function PreferColorSection({ isEdit, control }: ProfileSectionProps) {
         </h2>
       </div>
       {isEdit ? (
-        <div>
-          <ColorPickerField
-            name="color"
-            control={control}
-            sx={{
-              width: "100%",
-            }}
-          />
+        <div className="flex flex-col gap-5">
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex items-center">
+              <ColorPickerField
+                name={`color.${index}.value`}
+                control={control}
+                sx={{
+                  width: "100%",
+                }}
+              />
+              {index > 0 ? (
+                <Tooltip title="삭제">
+                  <IconButton
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 50,
+                      backgroundColor: "red",
+                      color: "white",
+                      ml: "10px",
+                      "&:hover": {
+                        backgroundColor: "red",
+                        color: "white",
+                      },
+                    }}
+                    onClick={(event: React.MouseEvent<HTMLElement>) => {
+                      event.stopPropagation();
+                      remove(index);
+                    }}
+                  >
+                    <RemoveIcon />
+                  </IconButton>
+                </Tooltip>
+              ) : (
+                <Tooltip title="추가">
+                  <IconButton
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 50,
+                      backgroundColor: "green",
+                      color: "white",
+                      ml: "10px",
+                      "&:hover": {
+                        backgroundColor: "green",
+                        color: "white",
+                      },
+                    }}
+                    onClick={(event: React.MouseEvent<HTMLElement>) => {
+                      event.stopPropagation();
+                      append({ value: "" });
+                    }}
+                  >
+                    <AddIcon />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </div>
+          ))}
         </div>
       ) : (
         <div className="grid grid-cols-[repeat(auto-fit,minmax(5rem,1fr))] gap-5 place-items-center">
           {colors.map((color) => (
-            <Tooltip title={color}>
+            <Tooltip key={color} title={color}>
               <Box
                 sx={{
                   width: "5rem",

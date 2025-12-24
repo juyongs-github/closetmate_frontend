@@ -72,6 +72,10 @@ function Login() {
             <PasswordField
               name="password"
               control={control}
+              rules={{
+                required: "비밀번호를 입력해 주세요.",
+              }}
+              label="비밀번호"
               sx={{
                 width: {
                   xs: "15rem",

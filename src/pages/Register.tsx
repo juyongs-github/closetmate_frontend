@@ -6,19 +6,20 @@ import Footer from "../layout/Footer";
 import InputField from "../components/form/InputField";
 import PasswordField from "../components/form/PasswordField";
 import BirthdayField from "../components/form/BirthdayField";
-import dayjs, { Dayjs } from "dayjs";
+import dayjs from "dayjs";
 import SelectField from "../components/form/SelectField";
 import ColorPickerField from "../components/form/ColorPickerField";
 import { Link, useNavigate } from "react-router-dom";
+import { GENDERS, STYLES, type Gender, type Style } from "../types/common";
 
 interface RegisterForm {
   email: string;
   password: string;
   phoneNumber: string;
   name: string;
-  birthday: Dayjs;
-  gender: "MEN" | "WOMEN";
-  style: string;
+  birthday: string;
+  gender: Gender;
+  style: Style;
   color: string;
 }
 
@@ -35,9 +36,9 @@ function Register() {
       password: "",
       phoneNumber: "",
       name: "",
-      birthday: dayjs(),
+      birthday: dayjs().format("YYYYMMDD"),
       gender: "MEN",
-      style: "NONE",
+      style: "CASUAL",
       color: "",
     },
   });
@@ -45,32 +46,6 @@ function Register() {
   const onSubmit = (data: RegisterForm) => {
     console.log(data);
   };
-
-  const genders = [
-    {
-      label: "남",
-      value: "MEN",
-    },
-    {
-      label: "여",
-      value: "WOMEN",
-    },
-  ];
-
-  const preferenceStyle = [
-    {
-      label: "없음",
-      value: "NONE",
-    },
-    {
-      label: "데일리",
-      value: "DAILY",
-    },
-    {
-      label: "오피스",
-      value: "OFFICE",
-    },
-  ];
 
   return (
     <div>
@@ -123,6 +98,10 @@ function Register() {
             <PasswordField
               name="password"
               control={control}
+              rules={{
+                required: "비밀번호를 입력해 주세요.",
+              }}
+              label="비밀번호"
               sx={{
                 width: {
                   xs: "15rem",
@@ -186,7 +165,7 @@ function Register() {
                   md: "30rem",
                 },
               }}
-              options={genders}
+              options={[...GENDERS]}
             />
             <SelectField
               name="style"
@@ -198,7 +177,7 @@ function Register() {
                   md: "30rem",
                 },
               }}
-              options={preferenceStyle}
+              options={[...STYLES]}
             />
             <ColorPickerField
               name="color"

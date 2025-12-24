@@ -9,25 +9,31 @@ import {
   type SxProps,
   type Theme,
 } from "@mui/material";
-import { useState } from "react";
+import { useId, useState } from "react";
 import {
   Controller,
   type Control,
   type FieldValues,
   type Path,
+  type RegisterOptions,
 } from "react-hook-form";
 
 interface PasswordFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
+  rules: RegisterOptions<T>;
+  label: string;
   sx?: SxProps<Theme>;
 }
 
 function PasswordField<T extends FieldValues>({
   name,
   control,
+  rules,
+  label,
   sx,
 }: PasswordFieldProps<T>) {
+  const id = useId();
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -44,20 +50,16 @@ function PasswordField<T extends FieldValues>({
     <Controller
       name={name}
       control={control}
-      rules={{
-        required: "비밀번호를 입력해 주세요.",
-      }}
+      rules={rules}
       render={({ field, fieldState }) => (
         <FormControl
           sx={{ ...sx }}
           variant="outlined"
           error={!!fieldState.error}
         >
-          <InputLabel htmlFor="outlined-adornment-password">
-            비밀번호
-          </InputLabel>
+          <InputLabel htmlFor={id}>{label}</InputLabel>
           <OutlinedInput
-            id="outlined-adornment-password"
+            id={id}
             type={showPassword ? "text" : "password"}
             endAdornment={
               <InputAdornment position="end">

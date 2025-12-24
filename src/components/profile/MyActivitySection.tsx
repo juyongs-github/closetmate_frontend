@@ -5,7 +5,7 @@ function MyActivitySection() {
   const { mobile, tablet } = useResponsive();
 
   return (
-    <section className="flex flex-col gap-12 p-10 bg-white md:gap-16 rounded-2xl">
+    <section className="flex flex-col gap-12 p-10 bg-white shadow-md md:gap-16 rounded-2xl">
       <div className="flex items-center justify-center gap-2 md:gap-3">
         <FiActivity
           style={{
