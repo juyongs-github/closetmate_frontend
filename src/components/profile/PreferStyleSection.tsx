@@ -32,7 +32,7 @@ function PreferStyleSection({
       {isEdit ? (
         <PreferStyleField control={control} />
       ) : (
-        <div className="grid place-items-center grid-cols-[repeat(auto-fit,minmax(7rem,1fr))] gap-5">
+        <div className="grid place-items-center grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-5">
           {styles.map((style) => {
             const label = STYLES.find((item) => item.value === style)?.label;
 
@@ -41,11 +41,11 @@ function PreferStyleSection({
                 <Box
                   sx={{
                     display: "flex",
-                    width: "7rem",
+                    width: "10rem",
                     fontSize: "0.85rem",
                     fontWeight: "bold",
                     borderRadius: "12px",
-                    backgroundColor: "pink",
+                    backgroundColor: "#FFD36E",
                     color: "white",
                     textAlign: "center",
                     p: 2,

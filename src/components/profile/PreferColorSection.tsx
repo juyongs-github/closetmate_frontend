@@ -5,6 +5,7 @@ import { Box, IconButton, Tooltip } from "@mui/material";
 import { type ProfileSectionProps } from "../../types/profile";
 import ColorPickerField from "../form/ColorPickerField";
 import { useFieldArray } from "react-hook-form";
+import Swal from "sweetalert2";
 
 interface PreferColorSectionProps extends ProfileSectionProps {
   colors: string[];
@@ -54,8 +55,8 @@ function PreferColorSection({
                 <Tooltip title="삭제">
                   <IconButton
                     sx={{
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                       borderRadius: 50,
                       backgroundColor: "red",
                       color: "white",
@@ -77,8 +78,8 @@ function PreferColorSection({
                 <Tooltip title="추가">
                   <IconButton
                     sx={{
-                      width: 40,
-                      height: 40,
+                      width: 30,
+                      height: 30,
                       borderRadius: 50,
                       backgroundColor: "green",
                       color: "white",
@@ -90,6 +91,15 @@ function PreferColorSection({
                     }}
                     onClick={(event: React.MouseEvent<HTMLElement>) => {
                       event.stopPropagation();
+                      if (fields.length >= 7) {
+                        Swal.fire({
+                          icon: "warning",
+                          title: "선호 색상",
+                          html: "<b>최대 7개 까지 가능합니다.</b>",
+                          confirmButtonText: "확인",
+                        });
+                        return;
+                      }
                       append({ value: "" });
                     }}
                   >

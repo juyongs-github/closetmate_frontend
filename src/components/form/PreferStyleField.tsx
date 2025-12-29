@@ -10,6 +10,17 @@ function PreferStyleField({ control }: Omit<ProfileSectionProps, "isEdit">) {
     <Controller
       name="style"
       control={control}
+      rules={{
+        validate: (value) => {
+          if (value.length > 5) {
+            return "최대 5개까지 선택 가능합니다.";
+          } else if (value.length >= 1) {
+            return true;
+          } else {
+            return "최소 1개 이상 선택해 주세요.";
+          }
+        },
+      }}
       render={({ field }) => (
         <div>
           <ToggleButtonGroup
@@ -43,12 +54,12 @@ function PreferStyleField({ control }: Omit<ProfileSectionProps, "isEdit">) {
                     borderRadius: "12px",
 
                     "&.Mui-selected": {
-                      backgroundColor: "purple",
+                      backgroundColor: "#B9A7E8",
                       color: "white",
                     },
 
                     "&.Mui-selected:hover": {
-                      backgroundColor: "purple",
+                      backgroundColor: "#B9A7E8",
                       filter: "brightness(0.85)",
                     },
                   }}

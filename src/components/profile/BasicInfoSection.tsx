@@ -7,7 +7,7 @@ import { FIGURES, GENDERS } from "../../types/common";
 import { Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
-import ChangePasswordModal from "../modal/changePasswordModal";
+import ChangePasswordDialog from "../modal/ChangePasswordDialog";
 
 function BasicInfoSection({ isEdit, control }: ProfileSectionProps) {
   const [open, setOpen] = useState(false);
@@ -120,7 +120,7 @@ function BasicInfoSection({ isEdit, control }: ProfileSectionProps) {
           >
             <span>비밀번호 변경</span>
           </Button>
-          <ChangePasswordModal open={open} onClose={handleClose} />
+          <ChangePasswordDialog open={open} onClose={handleClose} />
         </div>
       ) : (
         <div className="grid items-center min-w-0 grid-cols-2 text-sm gap-y-7 md:gap-y-10 text-nowrap md:text-base">

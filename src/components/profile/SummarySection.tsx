@@ -5,6 +5,7 @@ import profile from "../../assets/header/profile.png";
 import InputField from "../form/InputField";
 import type { ProfileSectionProps } from "../../types/profile";
 import AvatarField from "../form/AvatarField";
+import { Link } from "react-router-dom";
 
 interface SummarySectionProps extends ProfileSectionProps {
   onEdit: () => void;
@@ -37,6 +38,9 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
                     numberOnly={false}
                     sx={{
                       width: "100%",
+                      "& .MuiInputBase-input": {
+                        fontSize: "0.925rem",
+                      },
                     }}
                     size="small"
                   />
@@ -55,9 +59,9 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
                   numberOnly={false}
                   sx={{
                     width: "15rem",
-                    // "& .MuiInputBase-input": {
-                    //   fontSize: "0.925rem",
-                    // },
+                    "& .MuiInputBase-input": {
+                      fontSize: "0.925rem",
+                    },
                   }}
                   size="small"
                   multiline={true}
@@ -109,6 +113,8 @@ function SummarySection({ onEdit, isEdit, control }: SummarySectionProps) {
                 backgroundColor: "red",
                 borderRadius: 50,
               }}
+              component={Link}
+              to="/withdraw"
             >
               <span>탈퇴하기</span>
             </Button>

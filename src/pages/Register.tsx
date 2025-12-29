@@ -51,10 +51,12 @@ function Register() {
     <div>
       <div className="flex flex-col items-center justify-center p-16 bg-gray-100 ">
         <div className="relative flex flex-col items-center justify-center p-12 bg-white shadow-md md:p-20 rounded-3xl gap-7">
-          <div className="flex w-[15rem] md:w-[30rem]">
-            <IconButton onClick={goPrevPage}>
-              <ArrowBackIcon />
-            </IconButton>
+          <div className="flex items-center w-full">
+            <div className="flex-shrink-0">
+              <IconButton onClick={goPrevPage}>
+                <ArrowBackIcon />
+              </IconButton>
+            </div>
             <div className="flex items-center justify-center flex-1">
               <Link to={"/"}>
                 <div className="flex items-center">

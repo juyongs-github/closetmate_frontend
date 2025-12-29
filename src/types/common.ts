@@ -44,3 +44,18 @@ export const STYLES = [
 ] as const;
 export type Style = (typeof STYLES)[number]["value"];
 export type StyleOption = (typeof STYLES)[number];
+
+export const WITHDRAW_REASONS = [
+  { value: "DEFAULT", label: "선택해 주세요." },
+  { value: "USE_UNCOMFORTABLE", label: "사용하기 불편해요." },
+  { value: "LOW_USAGE", label: "서비스 이용 빈도가 낮아요." },
+  { value: "FEATURELESS", label: "원하는 기능이 부족해요." },
+  {
+    value: "UNSATISFY_RECOMMEND",
+    label: "코디가 마음에 들지 않아요.",
+  },
+  { value: "SWITCH_ANOTHER_SERVICE", label: "다른 서비스로 이동하려고 해요." },
+  { value: "ETC", label: "기타 (직접 입력)" },
+] as const;
+export type WithdrawReason = (typeof WITHDRAW_REASONS)[number]["value"];
+export type WithdrawReasonOption = (typeof WITHDRAW_REASONS)[number];

@@ -31,7 +31,12 @@ function SelectField<T extends FieldValues>({
       name={name}
       control={control}
       rules={{
-        required: `${label}을(를) 선택 하세요.`,
+        validate: (value) => {
+          if (!value || value === "DEFAULT") {
+            return `${label}을(를) 선택 하세요.`;
+          }
+          return true;
+        },
       }}
       render={({ field, fieldState }) => (
         <TextField

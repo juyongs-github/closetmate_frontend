@@ -1,4 +1,10 @@
-import { Box, Button, IconButton, Modal, Tooltip } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Tooltip,
+} from "@mui/material";
 import PasswordField from "../form/PasswordField";
 import type { ChangePasswordForm } from "../../types/profile";
 import { useForm } from "react-hook-form";
@@ -6,13 +12,14 @@ import LockOutlineIcon from "@mui/icons-material/LockOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import EditIcon from "@mui/icons-material/Edit";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
-interface CustomModalProps {
+interface CustomDialogProps {
   open: boolean;
   onClose: () => void;
 }
 
-function ChangePasswordModal({ open, onClose }: CustomModalProps) {
+function ChangePasswordDialog({ open, onClose }: CustomDialogProps) {
   const {
     control: changePasswordControl,
     handleSubmit: changePasswordHandleSubmit,
@@ -22,6 +29,22 @@ function ChangePasswordModal({ open, onClose }: CustomModalProps) {
 
   const onSubmit = (data: ChangePasswordForm) => {
     console.log(data);
+    Swal.fire({
+      icon: "question",
+      html: "<b>비밀번호를 변경 하시겠어요?</b>",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "확인",
+      cancelButtonText: "취소",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          icon: "success",
+          html: "<b>비밀번호가 변경 되었습니다.</b>",
+        });
+      }
+    });
   };
 
   const currentPassword = changePasswordWatch("currentPassword");
@@ -34,21 +57,16 @@ function ChangePasswordModal({ open, onClose }: CustomModalProps) {
   }, [open, reset]);
 
   return (
-    <Modal open={open} onClose={onClose}>
-      <Box
+    <Dialog open={open} onClose={onClose} sx={{ zIndex: 1000 }}>
+      <DialogContent
         sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: 500,
-          bgcolor: "background.paper",
-          borderRadius: 5,
-          boxShadow: 24,
           p: 5,
         }}
       >
-        <div className="flex flex-col gap-7">
+        <form
+          onSubmit={changePasswordHandleSubmit(onSubmit)}
+          className="flex flex-col gap-10"
+        >
           <div className="relative flex items-center justify-center">
             <div className="flex items-center gap-2">
               <LockOutlineIcon />
@@ -130,10 +148,10 @@ function ChangePasswordModal({ open, onClose }: CustomModalProps) {
           >
             <span>비밀번호 변경</span>
           </Button>
-        </div>
-      </Box>
-    </Modal>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 }
 
-export default ChangePasswordModal;
+export default ChangePasswordDialog;
