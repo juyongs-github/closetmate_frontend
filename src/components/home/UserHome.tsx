@@ -3,7 +3,7 @@ import weather_sample from "../../assets/home/weather_sample.png";
 import item_sample from "../../assets/home/item_sample.png";
 import { Button } from "@mui/material";
 import Section from "./Section";
-import Card from "../ui/Card";
+import CardItem from "../ui/CardItem";
 import { useResponsive } from "../../hooks/useResponsive";
 
 interface Weather {
@@ -13,17 +13,35 @@ interface Weather {
 
 interface MyClosetItems {
   id: number;
+  image: string;
+  category: string;
   title: string;
+  color: string;
+  size: string;
+  season: string;
+  details: string;
 }
 
 interface CodiHistorys {
   id: number;
+  image: string;
+  category: string;
   title: string;
+  color: string;
+  size: string;
+  season: string;
+  details: string;
 }
 
 interface MyFavoriteCodis {
   id: number;
+  image: string;
+  category: string;
   title: string;
+  color: string;
+  size: string;
+  season: string;
+  details: string;
 }
 
 function UserHome() {
@@ -35,19 +53,51 @@ function UserHome() {
   };
 
   const myClosetItems: MyClosetItems[] = [
-    { id: 1, title: "고양이 맨투맨" },
-    { id: 2, title: "무지 반팔티" },
-    { id: 3, title: "돌청 스키니진" },
-    { id: 4, title: "스니커즈" },
+    {
+      id: 1,
+      image: item_sample,
+      category: "상의",
+      title: "고양이 맨투맨",
+      color: "#ffffff",
+      size: "XL",
+      season: "사계절",
+      details: "",
+    },
+    {
+      id: 2,
+      image: item_sample,
+      category: "상의",
+      title: "무지 반팔티",
+      color: "#aaaaaa",
+      size: "L",
+      season: "여름",
+      details: "",
+    },
+    {
+      id: 3,
+      image: item_sample,
+      category: "하의",
+      title: "돌청 스키니진",
+      color: "#000000",
+      size: "M",
+      season: "가을",
+      details: "",
+    },
+    {
+      id: 4,
+      image: "",
+      category: "신발",
+      title: "스니커즈",
+      color: "#bbbbbb",
+      size: "250",
+      season: "사계절",
+      details: "",
+    },
   ];
 
   const codiHistorys: CodiHistorys[] = [];
 
-  const myFavoriteCodis: MyFavoriteCodis[] = [
-    { id: 1, title: "데일리 룩" },
-    { id: 2, title: "오피스 룩" },
-    { id: 3, title: "데이트 룩" },
-  ];
+  const myFavoriteCodis: MyFavoriteCodis[] = [];
 
   return (
     <div className="pt-20">
@@ -95,11 +145,11 @@ function UserHome() {
           </div>
         </section>
       </div>
-      <Section title="내 옷장" link="/closet">
+      <Section title="내 옷장" link="/mycloset">
         {myClosetItems.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 sm:gap-7 md:gap-10">
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-7">
             {myClosetItems.map((item) => (
-              <Card src={item_sample} title={item.title} />
+              <CardItem item={item} />
             ))}
           </div>
         ) : (
@@ -110,9 +160,9 @@ function UserHome() {
       </Section>
       <Section title="최근 코디" link="/latest">
         {codiHistorys.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 md:gap-10 sm:grid-cols-3 md:grid-cols-4 sm:gap-7">
+          <div className="grid grid-cols-2 gap-5 md:gap-7 md:grid-cols-3">
             {codiHistorys.map((item) => (
-              <Card src={item_sample} title={item.title} />
+              <CardItem item={item} />
             ))}
           </div>
         ) : (
@@ -123,9 +173,9 @@ function UserHome() {
       </Section>
       <Section title="저장 코디" link="/favorite">
         {myFavoriteCodis.length > 0 ? (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4 sm:gap-7 md:gap-10">
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-7">
             {myFavoriteCodis.map((item) => (
-              <Card src={item_sample} title={item.title} />
+              <CardItem item={item} />
             ))}
           </div>
         ) : (

@@ -23,7 +23,7 @@ function Section({ title, children, link }: Props) {
             variant="contained"
             size={mobile || tablet ? "small" : "large"}
             component={Link}
-            to="/login"
+            to={link}
             endIcon="→"
           >
             전체 보기

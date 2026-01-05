@@ -37,8 +37,8 @@ function Register() {
       phoneNumber: "",
       name: "",
       birthday: dayjs().format("YYYYMMDD"),
-      gender: "MEN",
-      style: "CASUAL",
+      gender: "남",
+      style: "캐주얼",
       color: "",
     },
   });
@@ -184,6 +184,7 @@ function Register() {
             <ColorPickerField
               name="color"
               control={control}
+              label="선호 색상"
               sx={{
                 width: {
                   xs: "15rem",

@@ -114,6 +114,7 @@ function AvatarField({ isEdit, control }: ProfileSectionProps) {
                 p: 1,
               }}
               onClick={() => {
+                URL.revokeObjectURL(uploadImg);
                 setUploadImg(null);
                 field.onChange(null); // form 값 초기화
                 if (fileRef.current) {

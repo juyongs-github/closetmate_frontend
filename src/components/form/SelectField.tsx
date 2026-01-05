@@ -7,7 +7,6 @@ import {
 } from "react-hook-form";
 
 interface SelectOption {
-  label: string;
   value: string;
 }
 
@@ -15,6 +14,7 @@ interface SelectFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
   label: string;
+  size?: "small" | "medium";
   sx?: SxProps<Theme>;
   options: SelectOption[];
 }
@@ -23,6 +23,7 @@ function SelectField<T extends FieldValues>({
   name,
   control,
   label,
+  size,
   sx,
   options,
 }: SelectFieldProps<T>) {
@@ -42,6 +43,7 @@ function SelectField<T extends FieldValues>({
         <TextField
           select
           label={label}
+          size={size}
           sx={{ ...sx }}
           {...field}
           error={!!fieldState.error}
@@ -49,7 +51,7 @@ function SelectField<T extends FieldValues>({
         >
           {options.map((option) => (
             <MenuItem key={option.value} value={option.value}>
-              {option.label}
+              {option.value}
             </MenuItem>
           ))}
         </TextField>

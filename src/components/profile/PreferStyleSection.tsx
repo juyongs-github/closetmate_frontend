@@ -34,10 +34,10 @@ function PreferStyleSection({
       ) : (
         <div className="grid place-items-center grid-cols-[repeat(auto-fit,minmax(10rem,1fr))] gap-5">
           {styles.map((style) => {
-            const label = STYLES.find((item) => item.value === style)?.label;
+            const value = STYLES.find((item) => item.value === style)?.value;
 
             return (
-              <Tooltip key={style} title={label}>
+              <Tooltip key={style} title={value}>
                 <Box
                   sx={{
                     display: "flex",
@@ -51,7 +51,7 @@ function PreferStyleSection({
                     p: 2,
                   }}
                 >
-                  <div className="w-full line-clamp-1">{label}</div>
+                  <div className="w-full line-clamp-1">{value}</div>
                 </Box>
               </Tooltip>
             );

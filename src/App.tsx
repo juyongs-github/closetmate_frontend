@@ -6,6 +6,9 @@ import Register from "./pages/Register";
 import FindAccount from "./pages/FindAccount";
 import Profile from "./pages/Profile";
 import Withdraw from "./pages/Withdraw";
+import MyCloset from "./pages/MyCloset";
+import ClosetItemAdd from "./pages/ClosetItemAdd";
+import ClosetItemEdit from "./pages/ClosetItemEdit";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
             <Route path="/find-account" element={<FindAccount />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/withdraw" element={<Withdraw />} />
+            <Route path="/mycloset" element={<MyCloset />} />
+            <Route path="/closetitem-add" element={<ClosetItemAdd />} />
+            <Route path="/closetitem-edit" element={<ClosetItemEdit />} />
           </Routes>
         </div>
       </div>

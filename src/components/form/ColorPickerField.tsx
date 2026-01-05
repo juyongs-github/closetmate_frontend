@@ -21,12 +21,14 @@ import { useState } from "react";
 interface ColorPickerFieldProps<T extends FieldValues> {
   name: Path<T>;
   control: Control<T>;
+  label: string;
   sx?: SxProps<Theme>;
 }
 
 function ColorPickerField<T extends FieldValues>({
   name,
   control,
+  label,
   sx,
 }: ColorPickerFieldProps<T>) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
@@ -42,12 +44,12 @@ function ColorPickerField<T extends FieldValues>({
       name={name}
       control={control}
       rules={{
-        required: "선호 색상을 선택하세요.",
+        required: `${label}을 선택하세요.`,
       }}
       render={({ field, fieldState }) => (
         <>
           <TextField
-            label="선호 색상(선택)"
+            label={label}
             onClick={handlePopover}
             sx={{
               "& .MuiInputBase-input": {

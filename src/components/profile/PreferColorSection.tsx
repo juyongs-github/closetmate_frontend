@@ -47,6 +47,7 @@ function PreferColorSection({
               <ColorPickerField
                 name={`color.${index}.value`}
                 control={control}
+                label="선호 색상"
                 sx={{
                   width: "100%",
                 }}

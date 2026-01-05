@@ -21,12 +21,12 @@ function Profile() {
     aiRecommandCnt: 3000,
     saveCodiCnt: 2000,
     birthday: "20010101",
-    gender: "MEN",
+    gender: "남",
     phoneNumber: "01012345678",
     height: 170,
     weight: 60,
-    figure: "NORMAL",
-    style: ["CASUAL", "STREET", "DANDY"],
+    figure: "보통",
+    style: ["캐주얼", "스트릿", "댄디"],
     color: ["#ffffff", "#000000", "#aaaaaa"],
   };
 

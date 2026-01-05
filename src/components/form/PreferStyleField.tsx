@@ -44,7 +44,7 @@ function PreferStyleField({ control }: Omit<ProfileSectionProps, "isEdit">) {
             }}
           >
             {STYLES.map((style) => (
-              <Tooltip key={style.value} title={style.label}>
+              <Tooltip key={style.value} title={style.value}>
                 <ToggleButton
                   value={style.value}
                   sx={{
@@ -65,7 +65,7 @@ function PreferStyleField({ control }: Omit<ProfileSectionProps, "isEdit">) {
                   }}
                 >
                   <div className="flex items-center justify-center flex-1">
-                    {style.label}
+                    {style.value}
                   </div>
                   <CheckCircleOutlineOutlinedIcon
                     sx={{
