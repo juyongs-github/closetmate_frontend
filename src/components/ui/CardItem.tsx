@@ -1,5 +1,6 @@
 import ImageIcon from "@mui/icons-material/Image";
 import MoreButton from "./MoreButton";
+import { useLocation } from "react-router-dom";
 
 interface MyClosetItems {
   id: number;
@@ -17,6 +18,8 @@ interface CardItemProps {
 }
 
 function CardItem({ item }: CardItemProps) {
+  const location = useLocation();
+
   return (
     <div className="group w-full aspect-[4/5] bg-[#FAFAFA] rounded-2xl overflow-hidden shadow-[0_2px_20px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.12)] transition-all duration-500 relative border border-gray-100">
       <div className="relative overflow-hidden h-3/4 bg-gray-50">
@@ -42,7 +45,7 @@ function CardItem({ item }: CardItemProps) {
           </div>
         )}
       </div>
-      <MoreButton />
+      {location.pathname !== "/" && <MoreButton />}
       <div className="flex flex-col items-center justify-center gap-2 px-5 h-1/4">
         <span className="text-xs font-semibold tracking-wide text-center text-gray-900 line-clamp-1">
           {item.title}

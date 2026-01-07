@@ -158,7 +158,7 @@ function UserHome() {
           </p>
         )}
       </Section>
-      <Section title="최근 코디" link="/latest">
+      <Section title="최근 코디" link="/codi-latest">
         {codiHistorys.length > 0 ? (
           <div className="grid grid-cols-2 gap-5 md:gap-7 md:grid-cols-3">
             {codiHistorys.map((item) => (
@@ -171,7 +171,7 @@ function UserHome() {
           </p>
         )}
       </Section>
-      <Section title="저장 코디" link="/favorite">
+      <Section title="저장 코디" link="/codi-favorite">
         {myFavoriteCodis.length > 0 ? (
           <div className="grid grid-cols-2 gap-5 md:grid-cols-3 md:gap-7">
             {myFavoriteCodis.map((item) => (

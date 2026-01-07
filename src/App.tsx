@@ -9,6 +9,9 @@ import Withdraw from "./pages/Withdraw";
 import MyCloset from "./pages/MyCloset";
 import ClosetItemAdd from "./pages/ClosetItemAdd";
 import ClosetItemEdit from "./pages/ClosetItemEdit";
+import LatestCodi from "./pages/LatestCodi";
+import FavoriteCodi from "./pages/FavoriteCodi";
+import CodiRecommend from "./pages/CodiRecommend";
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
             <Route path="/mycloset" element={<MyCloset />} />
             <Route path="/closetitem-add" element={<ClosetItemAdd />} />
             <Route path="/closetitem-edit" element={<ClosetItemEdit />} />
+            <Route path="/codi-latest" element={<LatestCodi />} />
+            <Route path="/codi-favorite" element={<FavoriteCodi />} />
+            <Route path="/codi-recommend" element={<CodiRecommend />} />
           </Routes>
         </div>
       </div>

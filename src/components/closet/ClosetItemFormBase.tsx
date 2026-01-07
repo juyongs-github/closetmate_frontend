@@ -34,28 +34,28 @@ function ClosetItemFormBase({
       Swal.fire({
         icon: "warning",
         title: "이미지 선택",
-        html: <b>${errors.image.message}</b>,
+        html: `<b>${errors.image.message}</b>`,
         confirmButtonText: "확인",
       });
     } else if (errors.category) {
       Swal.fire({
         icon: "warning",
         title: "카테고리",
-        html: <b>${errors.category.message}</b>,
+        html: `<b>${errors.category.message}</b>`,
         confirmButtonText: "확인",
       });
     } else if (errors.size) {
       Swal.fire({
         icon: "warning",
         title: "아이템 정보",
-        html: <b>${errors.size.message}</b>,
+        html: `<b>${errors.size.message}</b>`,
         confirmButtonText: "확인",
       });
     } else if (errors.season) {
       Swal.fire({
         icon: "warning",
         title: "아이템 정보",
-        html: <b>${errors.season.message}</b>,
+        html: `<b>${errors.season.message}</b>`,
         confirmButtonText: "확인",
       });
     }

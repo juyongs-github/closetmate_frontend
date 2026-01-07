@@ -8,22 +8,22 @@ import {
 import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AddIcon from "@mui/icons-material/Add";
+import CheckroomIcon from "@mui/icons-material/Checkroom";
+import ErrorIcon from "@mui/icons-material/Error";
 import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import ViewModeToggleButton from "../components/ui/ViewModeToggleButton";
 import CategoryToggleButton from "../components/ui/CategoryToggleButton";
 import CardItem from "../components/ui/CardItem";
-import ErrorIcon from "@mui/icons-material/Error";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store";
 import ListItem from "../components/ui/ListItem";
 import item_sample from "../assets/home/item_sample.png";
-import { CLOSET_CATEGORYS, type ClosetCategory } from "../types/closet";
 import { setCategory } from "../store/slices/categorySlice";
 import { useState, type SyntheticEvent } from "react";
+import { SITUATION_CATEGORYS, type SituationCategory } from "../types/codi";
 
-interface MyClosetItems {
+interface LastCodiItems {
   id: number;
   image: string;
   category: string;
@@ -34,12 +34,12 @@ interface MyClosetItems {
   details: string;
 }
 
-const myClosetItems: MyClosetItems[] = [
+const lastCodiItems: LastCodiItems[] = [
   {
     id: 1,
     image: item_sample,
-    category: "상의",
-    title: "고양이 맨투맨",
+    category: "데일리",
+    title: "꾸안꾸 데일리 룩",
     color: "#ffffff",
     size: "XL",
     season: "사계절",
@@ -48,8 +48,8 @@ const myClosetItems: MyClosetItems[] = [
   {
     id: 2,
     image: item_sample,
-    category: "상의",
-    title: "무지 반팔티",
+    category: "오피스",
+    title: "오피스 캐주얼 코디",
     color: "#aaaaaa",
     size: "L",
     season: "여름",
@@ -58,8 +58,8 @@ const myClosetItems: MyClosetItems[] = [
   {
     id: 3,
     image: item_sample,
-    category: "하의",
-    title: "돌청 스키니진",
+    category: "스포츠",
+    title: "편한 운동 룩",
     color: "#000000",
     size: "M",
     season: "가을",
@@ -68,8 +68,8 @@ const myClosetItems: MyClosetItems[] = [
   {
     id: 4,
     image: "",
-    category: "신발",
-    title: "스니커즈",
+    category: "데이트",
+    title: "깔끔 남친 룩",
     color: "#bbbbbb",
     size: "250mm",
     season: "사계절",
@@ -77,7 +77,7 @@ const myClosetItems: MyClosetItems[] = [
   },
 ];
 
-function MyCloset() {
+function LatestCodi() {
   const navigate = useNavigate();
   const goPrevPage = () => {
     navigate(-1);
@@ -85,12 +85,12 @@ function MyCloset() {
 
   const dispatch = useDispatch<AppDispatch>();
   const viewMode = useSelector((state: RootState) => state.viewMode.mode);
-  const closet = useSelector((state: RootState) => state.category.closet);
+  const situation = useSelector((state: RootState) => state.category.situation);
 
   const [open, setOpen] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const filteredItems = myClosetItems.filter((item: MyClosetItems) => {
-    const categoryMatch = closet === "전체" || item.category === closet;
+  const filteredItems = lastCodiItems.filter((item: LastCodiItems) => {
+    const categoryMatch = situation === "전체" || item.category === situation;
     const searchMatch =
       searchValue.length === 0 ||
       item.title.toLowerCase().includes(searchValue.toLowerCase());
@@ -111,13 +111,13 @@ function MyCloset() {
             </Tooltip>
             <div className="flex items-center justify-center flex-1">
               <h1 className="text-lg font-bold tracking-tighter md:tracking-normal md:text-xl">
-                내 옷장
+                최근 코디
               </h1>
             </div>
-            <Tooltip title="옷 등록">
+            <Tooltip title="코디 추천 받기">
               <IconButton
                 component={Link}
-                to="/closetitem-add"
+                to="/codi-recommend"
                 sx={{
                   backgroundColor: "darkviolet",
                   color: "white",
@@ -126,7 +126,7 @@ function MyCloset() {
                   },
                 }}
               >
-                <AddIcon />
+                <CheckroomIcon />
               </IconButton>
             </Tooltip>
           </div>
@@ -146,7 +146,7 @@ function MyCloset() {
                     setOpen(false);
                   }
                 }}
-                options={myClosetItems.map((item) => item.title)}
+                options={lastCodiItems.map((item) => item.title)}
                 sx={{
                   width: "100%",
                 }}
@@ -179,11 +179,14 @@ function MyCloset() {
               <ViewModeToggleButton />
             </div>
             <CategoryToggleButton
-              category={CLOSET_CATEGORYS}
-              alignment={closet}
+              category={SITUATION_CATEGORYS}
+              alignment={situation}
               onChange={(value) => {
                 dispatch(
-                  setCategory({ key: "closet", value: value as ClosetCategory })
+                  setCategory({
+                    key: "situation",
+                    value: value as SituationCategory,
+                  })
                 );
               }}
             />
@@ -206,7 +209,7 @@ function MyCloset() {
             <div className="flex flex-col items-center justify-center gap-3 py-20">
               <ErrorIcon sx={{ fontSize: 40, color: "gray" }} />
               <p className="font-semibold text-gray-500">
-                해당 아이템이 없습니다.
+                해당 코디가 없습니다.
               </p>
             </div>
           )}
@@ -217,4 +220,4 @@ function MyCloset() {
   );
 }
 
-export default MyCloset;
+export default LatestCodi;
